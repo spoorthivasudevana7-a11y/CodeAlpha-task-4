@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FoodNow – Prototype Design Explanation</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ac:#FF5A36;--tx:#222;--mu:#666;--ln:#e8e0dc;--bg:#f2f2f2;--pg:#fff;--soft:#FFF3EE;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--tx:#eee;--mu:#aaa;--ln:#3a3a3a;--bg:#141414;--pg:#1f1f1f;--soft:#2c1f1b}}
+:root[data-theme="dark"]{--tx:#eee;--mu:#aaa;--ln:#3a3a3a;--bg:#141414;--pg:#1f1f1f;--soft:#2c1f1b}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:14px/1.6 Poppins,system-ui,Arial,sans-serif;padding:16px}
+.pg{max-width:820px;margin:0 auto 20px;background:var(--pg);padding:40px 44px;border-radius:6px;box-shadow:0 2px 12px #0002}
+h1{font-size:30px;line-height:1.2;margin:8px 0}h2{font-size:19px;margin:22px 0 8px;padding-bottom:5px;border-bottom:2px solid var(--ac)}h2:first-of-type{margin-top:0}
+h3{font-size:14px;margin:14px 0 4px;color:var(--ac)}p{margin:6px 0}.mu{color:var(--mu)}
+a{color:var(--ac);font-weight:600}
+.tag{background:var(--ac);color:#fff;font-size:11px;font-weight:600;padding:2px 10px;border-radius:12px}
+.box{background:var(--soft);border-left:4px solid var(--ac);padding:10px 14px;border-radius:4px;margin:12px 0}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0}th,td{border:1px solid var(--ln);padding:7px 9px;text-align:left;vertical-align:top}th{background:var(--soft)}
+.fl{display:flex;align-items:center;gap:4px;flex-wrap:wrap;margin:10px 0}.fl span{border:1.5px solid var(--ac);border-radius:10px;padding:5px 9px;font-size:12px;font-weight:500}.fl i{color:var(--ac);font-style:normal}
+.sw{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}.sw div{width:84px;height:44px;border-radius:10px;font-size:10px;color:#fff;font-weight:600;padding:4px 6px;display:flex;align-items:flex-end}
+ul{margin:4px 0;padding-left:20px}
+@media print{@page{size:A4;margin:12mm}body{background:#fff;padding:0}.pg{box-shadow:none;margin:0;max-width:none;padding:0;page-break-after:always}}
+</style></head><body>
+
+<div class="pg">
+<span class="tag">MINI PROJECT · PROTOTYPE DESIGN</span>
+<h1>FoodNow: A Clickable Food Delivery App Prototype</h1>
+<p><b>Prototype link:</b> <a href="https://claude.ai/artifact/2EayeD33AHkMeWWeA5fHf3">https://claude.ai/artifact/2EayeD33AHkMeWWeA5fHf3</a></p>
+<h2 style="margin-top:20px">1. Project Overview</h2>
+<p>FoodNow is a mobile food delivery app prototype. It covers a complete journey: discovering restaurants, choosing dishes, customising an item, reviewing a cart, paying, and tracking the order live. The prototype is fully clickable and reacts to input: filters, search, quantities, coupon and totals all update.</p>
+<h2>2. Problem and Goals</h2>
+<p><b>Problem:</b> Ordering food while hungry and short on time is often slowed by cluttered lists, unclear totals and uncertainty after the order is placed.</p>
+<table><tr><th>Goal</th><th>How the design supports it</th></tr>
+<tr><td>Fast ordering</td><td>Few steps, one clear primary button per screen, sticky cart bar</td></tr>
+<tr><td>Trust through clarity</td><td>Itemised bill with delivery, coupon and tax lines visible before paying</td></tr>
+<tr><td>Reassurance</td><td>Live tracking with stages and a countdown ETA</td></tr>
+<tr><td>Ease for repeat use</td><td>Familiar patterns, bottom navigation, saved address and payment</td></tr></table>
+<h2>3. Target User</h2>
+<div class="box"><b>Ananya, 26, working professional.</b> Orders dinner several times a week on her phone, usually one-handed. Wants a decent meal in under 40 minutes, hates surprise fees, and likes knowing where her order is.</div>
+<h2>4. Process Followed</h2>
+<p>Research and persona → user flow → low-fidelity wireframes → high-fidelity UI (colour, type, icons, imagery) → clickable prototype. Earlier stages of this process are documented in the wireframe and high-fidelity pages submitted before.</p>
+</div>
+
+<div class="pg">
+<h2>5. User Flow</h2>
+<div class="fl"><span>Home</span><i>→</i><span>Restaurant menu</span><i>→</i><span>Item detail</span><i>→</i><span>Cart</span><i>→</i><span>Checkout</span><i>→</i><span>Live tracking</span><i>→</i><span>Delivered</span></div>
+<p class="mu">Side paths: Home → Search and category filter; Restaurant → favourite; Cart → coupon; Bottom bar → Orders and Profile.</p>
+<h2>6. Key Design Decisions</h2>
+<h3>Visual style</h3>
+<p>A warm, appetising look: an orange-red primary for actions and prices, a cream background, and a dark charcoal for text. Rounded cards and soft shadows make touch targets feel obvious.</p>
+<div class="sw"><div style="background:#FF5A36">Primary</div><div style="background:#FF8A5B">Gradient</div><div style="background:#1F1B24">Text</div><div style="background:#20B26B">Success</div><div style="background:#FFB800">Rating</div><div style="background:#FFF8F4;color:#222;border:1px solid #ddd">Background</div></div>
+<p><b>Typography:</b> Poppins. Bold for headings and prices, medium for labels, regular for descriptions. A small set of sizes keeps hierarchy clear.</p>
+<h3>UX principles applied</h3>
+<table><tr><th>Principle</th><th>Where it appears</th></tr>
+<tr><td>Visibility of system status</td><td>Toasts confirm actions; tracking stages and ETA update automatically</td></tr>
+<tr><td>User control and freedom</td><td>Back buttons everywhere, editable quantities, coupon can be removed</td></tr>
+<tr><td>Error prevention</td><td>Checkout is disabled for an empty cart; empty states explain what to do</td></tr>
+<tr><td>Recognition over recall</td><td>Highlighted active chips, selected radio options, visible cart count</td></tr>
+<tr><td>Consistency</td><td>Same button, card, icon and spacing system across all screens</td></tr>
+<tr><td>Fitts's law / thumb reach</td><td>Primary actions sit at the bottom; targets are about 40px or larger</td></tr>
+<tr><td>Hick's law</td><td>Few filters, one category at a time, two size options only</td></tr></table>
+<h3>Interaction design</h3>
+<ul><li><b>Item sheet:</b> size and quantity are chosen in one place, and the button shows the live price.</li>
+<li><b>Sticky cart bar:</b> appears once an item is added, so checkout is always one tap away.</li>
+<li><b>Itemised bill:</b> delivery is free above ₹300, and the coupon FIRST20 gives 20% off up to ₹100.</li>
+<li><b>Tracking:</b> the rider icon moves and the steps advance every few seconds to simulate a real order.</li></ul>
+</div>
+
+<div class="pg">
+<h2>7. Prototype Features</h2>
+<table><tr><th>Screen</th><th>Interactions to try</th></tr>
+<tr><td>Home</td><td>Category chips, live search, restaurant cards, empty state</td></tr>
+<tr><td>Restaurant</td><td>Favourite heart, open item, quick add of garlic bread, cart bar</td></tr>
+<tr><td>Item detail</td><td>Size choice, quantity stepper, price updates</td></tr>
+<tr><td>Cart</td><td>Change quantities, remove items, coupon, fee logic, total</td></tr>
+<tr><td>Checkout</td><td>Choose payment, place order with amount shown</td></tr>
+<tr><td>Tracking</td><td>Auto-advancing stages, ETA, call rider, back to home</td></tr>
+<tr><td>Profile / Orders</td><td>Bottom navigation between sections</td></tr></table>
+<h2>8. Testing Plan</h2>
+<p>The prototype has not yet been tested with real participants. The planned test uses 5 users with this scenario: <i>"Order a pizza and a garlic bread under ₹400 using a coupon, then tell me when it will arrive."</i></p>
+<ul><li><b>Measure:</b> task completion, time on task, wrong taps, and a 1–5 ease rating.</li><li><b>Watch for:</b> whether users notice the coupon, understand the size choice, and find the tracking screen.</li></ul>
+<h2>9. Limitations</h2>
+<ul><li>All restaurants open the same sample menu, and data is simulated. There is no real backend, login or payment.</li>
+<li>Food images are emoji placeholders rather than photography.</li>
+<li>The prototype is built as an HTML page, not a Figma or Adobe XD file, so the Figma link is not included.</li></ul>
+<h2>10. Next Steps</h2>
+<ul><li>Rebuild the screens as frames in Figma using the palette and type scale above and link them with prototype interactions, if a Figma file is required for submission.</li>
+<li>Add real photography, unique menus per restaurant, and an error state for failed payment.</li>
+<li>Run the usability test, then iterate on the findings.</li></ul>
+<h2>11. Conclusion</h2>
+<p>FoodNow shows how a short, consistent flow with transparent pricing and live feedback can make ordering feel fast and trustworthy. The interactive prototype lets reviewers experience the design rather than only see static screens.</p>
+</div>
+</body></html>

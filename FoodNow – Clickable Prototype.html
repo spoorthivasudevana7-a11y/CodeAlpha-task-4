@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FoodNow – Clickable Prototype</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--p:#FF5A36;--p2:#FF8A5B;--dk:#1F1B24;--gr:#20B26B;--bg:#FFF8F4;--mu:#7A7480;--ln:#F0E6E0;--ye:#FFB800;--page:#EFE9E6;--tx:#1F1B24;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--page:#141217;--tx:#f3eeea}}
+:root[data-theme="dark"]{--page:#141217;--tx:#f3eeea}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0}
+body{background:var(--page);color:var(--tx);font:14px Poppins,system-ui,Arial,sans-serif;padding:16px;display:flex;flex-wrap:wrap;gap:28px;justify-content:center;align-items:flex-start}
+.info{max-width:280px}.info h1{font-size:22px;margin:0 0 6px}.info p,.info li{font-size:13px;opacity:.8}.info ol{padding-left:18px}
+.ph{width:320px;height:640px;background:var(--bg);color:var(--dk);border-radius:34px;border:7px solid var(--dk);position:relative;overflow:hidden}
+.s{position:absolute;inset:0;padding:16px 14px 76px;display:none;flex-direction:column;gap:10px;overflow-y:auto}
+.s.on{display:flex;animation:in .25s}
+@keyframes in{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
+.r{display:flex;align-items:center;gap:8px}.sp{justify-content:space-between}
+.mu{color:var(--mu);font-size:11px}b{font-weight:600}.pr{color:var(--p);font-weight:700}
+.i{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.ib{width:38px;height:38px;border-radius:12px;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px #0001;cursor:pointer;border:0;color:inherit}
+.card{background:#fff;border-radius:16px;padding:10px;box-shadow:0 2px 10px #0000000d}
+.clk{cursor:pointer;transition:transform .12s}.clk:active{transform:scale(.97)}
+.btn{background:linear-gradient(135deg,var(--p),var(--p2));color:#fff;border:0;border-radius:16px;padding:13px;text-align:center;font:600 13px Poppins,sans-serif;box-shadow:0 6px 14px #ff5a3640;cursor:pointer;width:100%}
+.btn.o{background:none;color:var(--p);border:1.5px solid var(--p);box-shadow:none}
+.btn:disabled{opacity:.5}
+.img{border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:30px;flex:none}
+.chip{padding:7px 13px;border-radius:20px;background:#fff;font:500 11px Poppins,sans-serif;border:0;white-space:nowrap;cursor:pointer;color:var(--dk)}
+.chip.a{background:var(--p);color:#fff}
+input.q{border:0;outline:0;background:none;font:13px Poppins,sans-serif;width:100%;color:var(--dk)}
+.nav{position:absolute;left:10px;right:10px;bottom:10px;display:flex;justify-content:space-around;background:#fff;border-radius:20px;padding:8px 4px;box-shadow:0 4px 16px #0002}
+.nav button{background:none;border:0;display:flex;flex-direction:column;align-items:center;gap:2px;font:500 9px Poppins,sans-serif;color:var(--mu);cursor:pointer}
+.nav .on{color:var(--p);font-weight:600}
+.qty{display:flex;align-items:center;gap:10px;background:var(--bg);border-radius:12px;padding:3px 8px;font-weight:600}
+.qty button{border:0;background:none;font-size:16px;color:var(--p);cursor:pointer;padding:0 3px;font-weight:700}
+.opt{display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:12px;background:#fff;cursor:pointer;border:1.5px solid transparent}
+.opt.sel{border-color:var(--p)}
+.rad{width:14px;height:14px;border-radius:50%;border:2px solid var(--p);display:inline-block;margin-right:8px;vertical-align:middle}
+.sel .rad{background:radial-gradient(var(--p) 40%,transparent 45%)}
+.bar{position:absolute;left:14px;right:14px;bottom:76px}
+.step{display:flex;gap:10px;align-items:center;font-size:12px;color:var(--mu)}.step.d{color:var(--dk)}
+.dot{width:14px;height:14px;border-radius:50%;background:var(--ln);flex:none}.d .dot{background:var(--gr)}.step.c .dot{background:#fff;border:3px solid var(--p)}.step.c{color:var(--dk);font-weight:600}
+.tg{position:absolute;left:50%;bottom:90px;transform:translateX(-50%);background:var(--dk);color:#fff;padding:7px 14px;border-radius:20px;font-size:11px;opacity:0;transition:.25s;pointer-events:none;z-index:9;white-space:nowrap}.tg.on{opacity:1}
+</style></head><body>
+<div class="info"><h1>FoodNow Prototype</h1><p>Clickable food delivery prototype. Try the full ordering flow:</p>
+<ol><li>Filter or search on Home</li><li>Open a restaurant</li><li>Tap Margherita, choose a size, add it</li><li>Add Garlic Bread with +</li><li>Open the cart, try coupon <b>FIRST20</b></li><li>Pick payment, place the order</li><li>Watch live tracking</li></ol>
+<p>Bottom bar: Home, Orders (tracking) and Profile also work.</p></div>
+
+<div class="ph" id="ph">
+<svg width="0" height="0" style="position:absolute"><defs>
+<symbol id="back" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol><symbol id="x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+<symbol id="pin" viewBox="0 0 24 24"><path d="M12 22s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+<symbol id="search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></symbol>
+<symbol id="home" viewBox="0 0 24 24"><path d="M3 11 12 3l9 8v10H3z"/></symbol><symbol id="bag" viewBox="0 0 24 24"><path d="M5 7h14l-1 14H6zM9 7a3 3 0 0 1 6 0"/></symbol>
+<symbol id="user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+<symbol id="heart" viewBox="0 0 24 24"><path d="M12 21s-8-5-8-11a4.5 4.5 0 0 1 8-2.5A4.5 4.5 0 0 1 20 10c0 6-8 11-8 11z"/></symbol>
+<symbol id="phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></symbol></defs></svg>
+
+<!-- HOME -->
+<div class="s on" id="home">
+<div class="r sp"><div><div class="mu">Deliver to</div><b class="r"><svg class="i" style="color:var(--p)"><use href="#pin"/></svg>Home, Hyderabad</b></div></div>
+<div class="card r"><svg class="i" style="color:var(--mu)"><use href="#search"/></svg><input class="q" id="q" placeholder="Search food or restaurants" oninput="list()"></div>
+<div class="img" style="height:80px;background:linear-gradient(135deg,var(--p),var(--ye));color:#fff;justify-content:space-between;padding:0 16px;font-size:38px"><div style="font-size:14px;font-weight:700;line-height:1.2">50% OFF<div style="font-size:10px;font-weight:400">use code FIRST20</div></div>🍕</div>
+<div class="r" id="chips"></div>
+<b>Nearby restaurants</b><div id="rl" style="display:flex;flex-direction:column;gap:10px"></div>
+</div>
+
+<!-- RESTAURANT -->
+<div class="s" id="rest" style="padding-top:0">
+<div class="img" id="rcov" style="height:120px;margin:0 -14px;border-radius:0;background:linear-gradient(160deg,#FF8A5B,#C9391B);font-size:56px;position:relative">🍕
+<div class="r sp" style="position:absolute;top:14px;left:14px;right:14px"><button class="ib" onclick="back()"><svg class="i"><use href="#back"/></svg></button><button class="ib" id="hb" onclick="fav()" style="color:var(--mu)"><svg class="i"><use href="#heart"/></svg></button></div></div>
+<b style="font-size:17px" id="rn">Napoli Pizzeria</b><div class="mu">★ 4.5 · 25 min · Free delivery over ₹300</div>
+<b>Popular</b>
+<div class="card r sp clk" onclick="openItem()"><div><b>Margherita</b><div class="mu">Tomato, mozzarella, basil</div><div class="pr">₹220</div></div><div class="img" style="width:62px;height:62px;background:#FFE3D6">🍕</div></div>
+<div class="card r sp"><div><b>Garlic Bread</b><div class="mu">Toasted with herb butter</div><div class="pr">₹120</div></div><div style="text-align:center"><div class="img" style="width:62px;height:62px;background:#FFF0C7">🥖</div><div id="gq"></div></div></div>
+<div class="bar" id="cbar" style="display:none"><button class="btn r sp" onclick="go('cart')"><span id="cn"></span><span id="ct"></span></button></div>
+</div>
+
+<!-- ITEM -->
+<div class="s" id="item">
+<div class="r sp"><button class="ib" onclick="back()"><svg class="i"><use href="#x"/></svg></button></div>
+<div class="img" style="height:140px;background:linear-gradient(135deg,#FFE3D6,#FFC9A8);font-size:84px">🍕</div>
+<div class="r sp"><b style="font-size:17px">Margherita</b><span class="pr" id="ip">₹220</span></div>
+<div class="mu">Classic wood-fired pizza with fresh basil. Contains gluten, dairy.</div><b>Size</b>
+<div class="opt sel" id="s0" onclick="setSize(0)"><span><span class="rad"></span>Regular</span><span class="mu">Included</span></div>
+<div class="opt" id="s1" onclick="setSize(60)"><span><span class="rad"></span>Large</span><span class="mu">+₹60</span></div>
+<div class="r" style="margin-top:auto"><div class="qty"><button onclick="dq=Math.max(1,dq-1);ip()">−</button><span id="dq">1</span><button onclick="dq++;ip()">+</button></div><button class="btn" style="flex:1" onclick="addM()" id="ab">Add · ₹220</button></div>
+</div>
+
+<!-- CART -->
+<div class="s" id="cart">
+<div class="r"><button class="ib" onclick="back()"><svg class="i"><use href="#back"/></svg></button><b style="font-size:16px">Your cart</b></div>
+<div id="cl" style="display:flex;flex-direction:column;gap:10px"></div>
+<div class="card clk r sp" id="cp" onclick="tc()" style="border:1.5px dashed var(--p);color:var(--p)"><b>🏷 Apply coupon FIRST20</b></div>
+<div class="card" id="bill"></div>
+<button class="btn" style="margin-top:auto" onclick="go('pay')" id="co">Proceed to checkout</button>
+</div>
+
+<!-- PAY -->
+<div class="s" id="pay">
+<div class="r"><button class="ib" onclick="back()"><svg class="i"><use href="#back"/></svg></button><b style="font-size:16px">Checkout</b></div>
+<div class="card"><div class="mu">Delivery address</div><b class="r"><svg class="i" style="color:var(--p)"><use href="#pin"/></svg>Home · 12 Main St</b></div>
+<div class="card"><div class="mu" style="margin-bottom:6px">Payment method</div>
+<div class="opt sel" id="p0" onclick="pm(0)"><span><span class="rad"></span>UPI</span></div><div class="opt" id="p1" onclick="pm(1)" style="margin-top:6px"><span><span class="rad"></span>Card</span></div><div class="opt" id="p2" onclick="pm(2)" style="margin-top:6px"><span><span class="rad"></span>Cash on delivery</span></div></div>
+<button class="btn" style="margin-top:auto" id="pb" onclick="place()">Place order</button>
+</div>
+
+<!-- TRACK -->
+<div class="s" id="track">
+<div class="r"><b style="font-size:16px">Order #1042</b></div>
+<div class="img" style="height:130px;background:repeating-linear-gradient(45deg,#E9F3EC,#E9F3EC 12px,#DDEBE1 12px,#DDEBE1 24px);position:relative;font-size:26px"><span id="rid" style="position:absolute;left:30px;bottom:24px;transition:all 2s">🏍️</span><span style="position:absolute;right:40px;top:24px">📍</span></div>
+<div><div class="mu">Estimated arrival</div><b style="font-size:20px" id="eta">25 min</b></div>
+<div class="card" id="steps" style="display:flex;flex-direction:column;gap:8px"></div>
+<div class="card r sp"><div class="r"><div class="img" style="width:38px;height:38px;background:var(--p);color:#fff;font-size:13px;border-radius:50%;font-weight:600">RK</div><div><b>Ravi K.</b><div class="mu">★ 4.9 · Your rider</div></div></div><button class="ib" style="background:var(--gr);color:#fff" onclick="toast('Calling Ravi…')"><svg class="i"><use href="#phone"/></svg></button></div>
+<button class="btn o" id="tb" style="margin-top:auto" onclick="toast('Support chat opened')">Need help?</button>
+</div>
+
+<!-- PROFILE -->
+<div class="s" id="prof">
+<b style="font-size:18px">Profile</b>
+<div class="card r"><div class="img" style="width:50px;height:50px;background:var(--p);color:#fff;border-radius:50%;font-size:18px;font-weight:600">A</div><div><b>Ananya</b><div class="mu">ananya@example.com</div></div></div>
+<div class="card clk" onclick="toast('Saved addresses')">Saved addresses</div><div class="card clk" onclick="toast('Payment methods')">Payment methods</div><div class="card clk" onclick="toast('Favourites: '+favs+' saved')">Favourites</div>
+</div>
+
+<div class="nav" id="nav">
+<button data-t="home" class="on" onclick="tab('home')"><svg class="i"><use href="#home"/></svg>Home</button>
+<button data-t="search" onclick="tab('search')"><svg class="i"><use href="#search"/></svg>Search</button>
+<button data-t="track" onclick="tab('track')"><svg class="i"><use href="#bag"/></svg>Orders</button>
+<button data-t="prof" onclick="tab('prof')"><svg class="i"><use href="#user"/></svg>Profile</button></div>
+<div class="tg" id="tg"></div>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const R=[{n:'Napoli Pizzeria',c:'pizza',e:'🍕',t:'4.5 · 25 min · ₹₹',bg:'#FFE3D6'},{n:'Royal Biryani House',c:'biryani',e:'🍛',t:'4.7 · 30 min · ₹₹',bg:'#FFF0C7'},{n:'Burger Barn',c:'burgers',e:'🍔',t:'4.3 · 20 min · ₹',bg:'#FFE9C9'},{n:'Slice Corner',c:'pizza',e:'🍕',t:'4.1 · 35 min · ₹',bg:'#FFE3D6'}];
+const P={m:{n:'Margherita',e:'🍕',bg:'#FFE3D6'},g:{n:'Garlic Bread',p:120,e:'🥖',bg:'#FFF0C7'}};
+let cat='All',cart={m:{q:0,p:220},g:{q:0,p:120}},size=0,dq=1,coupon=false,hist=['home'],cur='home',favs=0,timer;
+function toast(m){const t=$('tg');t.textContent=m;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),1600)}
+function go(id,nb){if(!nb&&cur!==id)hist.push(cur);show(id)}
+function show(id){document.querySelectorAll('.s').forEach(s=>s.classList.toggle('on',s.id===id));cur=id;if(id==='cart')rc();if(id==='rest')rb();
+ const t=['home','track','prof'].includes(id)?id:(id==='home'?'home':null);document.querySelectorAll('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.t===id))}
+function back(){hist.pop();show(hist[hist.length-1]||'home')}
+function tab(t){hist=['home'];if(t==='search'){show('home');$('q').focus();return}if(t==='track'&&!window.ordered){toast('No active order yet');return}show(t)}
+function chips(){$('chips').innerHTML=['All','pizza','biryani','burgers'].map(c=>`<button class="chip ${c===cat?'a':''}" onclick="cat='${c}';chips();list()">${c[0].toUpperCase()+c.slice(1)}</button>`).join('')}
+function list(){const q=$('q').value.toLowerCase();const a=R.filter(r=>(cat==='All'||r.c===cat)&&r.n.toLowerCase().includes(q));
+ $('rl').innerHTML=a.length?a.map((r,i)=>`<div class="card r clk" onclick="openR(${R.indexOf(r)})"><div class="img" style="width:60px;height:60px;background:${r.bg}">${r.e}</div><div><b>${r.n}</b><div class="mu">★ ${r.t}</div></div></div>`).join(''):'<div class="mu" style="text-align:center;padding:20px">No restaurants found. Try another filter.</div>'}
+function openR(i){$('rn').textContent=R[i].n;$('rcov').firstChild.nodeValue=R[i].e;go('rest')}
+function fav(){const b=$('hb');const on=b.style.color==='rgb(255, 90, 54)';b.style.color=on?'var(--mu)':'#FF5A36';b.querySelector('svg').style.fill=on?'none':'#FF5A36';favs+=on?-1:1;toast(on?'Removed from favourites':'Saved to favourites')}
+function openItem(){size=0;dq=1;setSize(0);go('item')}
+function setSize(s){size=s;$('s0').classList.toggle('sel',s===0);$('s1').classList.toggle('sel',s===60);ip()}
+function ip(){$('dq').textContent=dq;const u=220+size;$('ip').textContent='₹'+u;$('ab').textContent='Add · ₹'+u*dq}
+function addM(){cart.m.q+=dq;cart.m.p=220+size;toast('Added to cart');hist.pop();show('rest')}
+function sub(){return Object.values(cart).reduce((a,c)=>a+c.q*c.p,0)}
+function cnt(){return Object.values(cart).reduce((a,c)=>a+c.q,0)}
+function rb(){$('cbar').style.display=cnt()?'block':'none';$('cn').textContent=cnt()+' item'+(cnt()>1?'s':'');$('ct').textContent='View cart · ₹'+sub();
+ $('gq').innerHTML=cart.g.q?`<div class="qty" style="margin-top:4px"><button onclick="ch('g',-1)">−</button>${cart.g.q}<button onclick="ch('g',1)">+</button></div>`:`<button class="chip a" style="margin-top:4px" onclick="ch('g',1)">+ Add</button>`}
+function ch(k,d){cart[k].q=Math.max(0,cart[k].q+d);if(cur==='rest')rb();else rc()}
+function rc(){const ks=Object.keys(cart).filter(k=>cart[k].q);
+ $('cl').innerHTML=ks.length?ks.map(k=>`<div class="card r sp"><div class="r"><div class="img" style="width:46px;height:46px;background:${P[k].bg};font-size:22px">${P[k].e}</div><div><b>${P[k].n}</b><div class="pr">₹${cart[k].p}</div></div></div><div class="qty"><button onclick="ch('${k}',-1)">−</button>${cart[k].q}<button onclick="ch('${k}',1)">+</button></div></div>`).join(''):'<div class="mu" style="text-align:center;padding:30px">Your cart is empty 🛒<br>Add something tasty!</div>';
+ const s=sub(),d=s&&s<300?30:0,disc=coupon?Math.min(100,Math.round(s*.2)):0,tx=Math.round((s-disc)*.05),t=s?s+d-disc+tx:0;window.total=t;
+ $('bill').innerHTML=`<div class="r sp mu"><span>Subtotal</span><span>₹${s}</span></div><div class="r sp mu"><span>Delivery</span><span style="${d?'':'color:var(--gr)'}">${d?'₹'+d:'Free'}</span></div>${coupon?`<div class="r sp mu"><span>Coupon FIRST20</span><span style="color:var(--gr)">−₹${disc}</span></div>`:''}<div class="r sp mu"><span>Taxes</span><span>₹${tx}</span></div><hr style="border:0;border-top:1px solid var(--ln)"><div class="r sp"><b>Total</b><b class="pr" style="font-size:16px">₹${t}</b></div>`;
+ $('co').disabled=!s;$('pb').textContent='Place order · ₹'+t;$('cp').innerHTML=coupon?'<b>✓ FIRST20 applied · tap to remove</b>':'<b>🏷 Apply coupon FIRST20</b>'}
+function tc(){if(!sub()){toast('Add items first');return}coupon=!coupon;toast(coupon?'Coupon applied!':'Coupon removed');rc()}
+function pm(i){[0,1,2].forEach(j=>$('p'+j).classList.toggle('sel',i===j))}
+const ST=['Order confirmed','Preparing your food','Out for delivery','Delivered'];
+function place(){window.ordered=true;let n=0;const eta=[25,18,10,0];
+ const draw=()=>{$('steps').innerHTML=ST.map((s,i)=>`<div class="step ${i<n?'d':i===n?'c':''}"><span class="dot"></span>${s}</div>`).join('');$('eta').textContent=n>=3?'Delivered 🎉':eta[n]+' min';$('rid').style.left=(30+n*45)+'px';
+  if(n>=3){$('tb').textContent='Back to home';$('tb').onclick=()=>{cart.m.q=0;cart.g.q=0;coupon=false;window.ordered=false;hist=['home'];show('home')};clearInterval(timer)}};
+ n=0;draw();$('tb').textContent='Need help?';$('tb').onclick=()=>toast('Support chat opened');hist=['home'];show('track');
+ clearInterval(timer);timer=setInterval(()=>{n++;draw()},3000)}
+chips();list();rc();
+</script></body></html>
